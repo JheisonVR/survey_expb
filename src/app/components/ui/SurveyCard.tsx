@@ -4,6 +4,7 @@ import { Question } from "@/seed/seed";
 import { Option } from "@/seed/seed";
 import { data } from '../../../seed/seed';
 import AreaValuesTable from "./AreaValuesTable";
+import AreaRadarChart from './AreaRadarChart';
 
 interface SurveyCardProps {
     area: string;
@@ -15,7 +16,6 @@ interface SurveyCardProps {
 
 const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCurrentAreaIndex, currentAreaIndex }) => {
     const [selectedOptionsState, setSelectedOptions] = useState<{ [key: string]: { [key: number]: number } }>({});
-    // const [selectedOptionsState, setSelectedOptions] = selectedOptions;
     const [sum, setSum] = useState<number>(0);
     const [areaValues, setAreaValues] = useState<{ [key: string]: number }>({});
     const [totalSum, setTotalSum] = useState<number>(0);
@@ -68,12 +68,20 @@ const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCu
         }
     };
 
+    const handleReset = () => {
+        setSelectedOptions({});
+        setSum(0);
+        setAreaValues({});
+        setTotalSum(0);
+        setCurrentAreaIndex(0);
+    };
+
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md">
+        <div className="p-4 bg-white rounded-lg">
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th className="w-1/2 p-2 text-left font-bold text-gray-800 border-b border-gray-300">{area}</th>
+                        <th className="w-1/2 p-2 text-left font-bold text-cyan-800 text-xl border-b border-gray-300">{area}</th>
                         {options.map((option, index) => (
                             <th key={index} className="w-1/8 p-2 font-bold text-center text-gray-700 border-b border-gray-300">{option.option}</th>
                         ))}
@@ -90,7 +98,7 @@ const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCu
                                         name={`question-${questionIndex}`}
                                         checked={selectedOptionsState[area]?.[questionIndex] === option.value}
                                         onChange={() => handleOptionChange(questionIndex, option.value)}
-                                        className="form-radio text-blue-600"
+                                        className="form-radio text-cyan-600 focus:ring-cyan-500 h-4 w-4"
                                     />
                                 </td>
                             ))}
@@ -98,17 +106,33 @@ const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCu
                     ))}
                 </tbody>
             </table>
-            <div className="mt-4 flex justify-between">
-                <button onClick={handlePrevArea} disabled={currentAreaIndex <= 0} className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md">Prev</button>
-                <button onClick={handleNextArea} disabled={currentAreaIndex >= data.length - 1} className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md">Next</button>
+            <div className="mt-4 flex flex-col sm:flex-row justify-between">
+                <button 
+                    onClick={handlePrevArea} 
+                    disabled={currentAreaIndex <= 0} 
+                    className={`px-4 py-2 rounded-lg shadow-md ${currentAreaIndex <= 0 ? 'bg-gray-500' : 'bg-cyan-500'} text-white mb-2 sm:mb-0`}
+                >
+                    Prev
+                </button>
+                <button 
+                    onClick={handleNextArea} 
+                    disabled={currentAreaIndex >= data.length - 1} 
+                    className={`px-4 py-2 rounded-lg shadow-md ${currentAreaIndex >= data.length - 1 ? 'bg-gray-500' : 'bg-cyan-500'} text-white mb-2 sm:mb-0`}
+                >
+                    Next
+                </button>
+                <button 
+                    onClick={handleReset} 
+                    className="px-4 py-2 rounded-lg shadow-md bg-red-500 text-white"
+                >
+                    Reset
+                </button>
             </div>
-            <div className="mt-4 text-right font-bold text-gray-800">
-                Total Sum for {area}: {sum}
-            </div>
-            <div className="mt-4 text-right font-bold text-gray-800">
-                Total Sum of All Areas: {totalSum}
+            <div hidden className="mt-4 text-right font-bold text-gray-800">
+                Suma total para {area}: {sum}
             </div>
             <AreaValuesTable areaValues={areaValues} totalSum={totalSum} />
+            <AreaRadarChart areaValues={areaValues} />
         </div>
     );
 };

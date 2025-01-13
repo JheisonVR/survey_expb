@@ -15,7 +15,7 @@ const Survey: React.FC = () => {
     return (
         <div>
             <SurveyCard 
-                area={data[currentAreaIndex].name} 
+                area={data[currentAreaIndex].description} 
                 questions={data[currentAreaIndex].questions} 
                 options={data[currentAreaIndex].questions[0].options} 
                 setCurrentAreaIndex = {setCurrentAreaIndex}

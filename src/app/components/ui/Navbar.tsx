@@ -1,6 +1,8 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import logoExportBrands from '/public/logoExportBrands.png';
 
 const navbarOptions = ['Servicios', 'Diagnostico', 'Contáctenos', 'Blog'];
 const dropdownOptions = [
@@ -14,17 +16,34 @@ const dropdownOptions = [
 
 const Navbar: React.FC = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
-        <nav className="bg-yellow-400 p-2">
-            <ul className="flex list-none m-0 p-0 justify-center">
+        <nav className={`bg-yellow-400 p-2 fixed top-0 left-0 right-0 z-50 rounded-md transition-all duration-300 ${isScrolled ? 'h-10' : 'h-10'}`}>
+            <div className="flex justify-center items-center">
+                {isScrolled && (
+                    <Image src={logoExportBrands} alt="Logo Export Brands" width={50} height={50} />
+                )}
+            </div>
+            <ul className={`flex list-none m-0 p-0 justify-center transition-opacity duration-0 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}>
                 {navbarOptions.map((option, index) => (
-                    <li key={index} className="mx-4 relative">
+                    <li key={index} className={`tracking-wide mx-4 px-2 relative text-center transform transition-transform duration-300 hover:scale-105 ${index !== navbarOptions.length - 1 ? 'border-r border-black' : ''}`}>
                         {option === 'Servicios' ? (
                             <div
                                 onMouseEnter={() => setDropdownOpen(true)}
                                 onMouseLeave={() => setDropdownOpen(false)}
-                                className="text-center"
+                                className="text-center transform transition-transform duration-300 hover:scale-105"
                             >
                                 <span>{option}</span>
                                 {dropdownOpen && (
