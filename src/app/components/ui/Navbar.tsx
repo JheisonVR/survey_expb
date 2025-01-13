@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
     }, []);
 
     return (
-        <nav className={`bg-yellow-400 p-2 fixed top-0 left-0 right-0 z-50 rounded-md transition-all duration-300 ${isScrolled ? 'h-10' : 'h-10'}`}>
+        <nav className={`bg-yellow-400 p-2 fixed top-0 left-0 right-0 z-50 rounded-sm transition-all duration-300 ${isScrolled ? 'h-10' : 'h-10'}`}>
             <div className="flex justify-center items-center">
                 {isScrolled && (
                     <Image src={logoExportBrands} alt="Logo Export Brands" width={50} height={50} />
