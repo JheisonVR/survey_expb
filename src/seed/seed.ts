@@ -14,6 +14,418 @@ export interface Area {
     questions: Question[];
 }
 
+interface SeedData {
+    options: Option[];
+    questions: Question[];
+    areas: Area[];
+}
+
+export const contactInfo:string = `
+Direccion: calle 23 #72d-27 Bogotá Colombia
+Horario: Lunes a viernes 9:00am a 6:00pm
+Telefono: +57 333 2873478
+Email: Natalia.laverde@exportbrandll.com
+`
+
+export const countries = [
+    { region: "Africa", pais: "Sudáfrica", indicativo: "+27" },
+    { region: "Africa", pais: "Nigeria", indicativo: "+234" },
+    { region: "Africa", pais: "Egipto", indicativo: "+20" },
+    { region: "Africa", pais: "Kenia", indicativo: "+254" },
+    { region: "Africa", pais: "Argelia", indicativo: "+213" },
+    { region: "Asia", pais: "China", indicativo: "+86" },
+    { region: "Asia", pais: "India", indicativo: "+91" },
+    { region: "Asia", pais: "Japón", indicativo: "+81" },
+    { region: "Asia", pais: "Corea del Sur", indicativo: "+82" },
+    { region: "Asia", pais: "Indonesia", indicativo: "+62" },
+    { region: "Europa", pais: "Alemania", indicativo: "+49" },
+    { region: "Europa", pais: "Reino Unido", indicativo: "+44" },
+    { region: "Europa", pais: "Francia", indicativo: "+33" },
+    { region: "Europa", pais: "Italia", indicativo: "+39" },
+    { region: "Europa", pais: "España", indicativo: "+34" },
+    { region: "América del Norte", pais: "Estados Unidos", indicativo: "+1" },
+    { region: "América del Norte", pais: "Canadá", indicativo: "+1" },
+    { region: "América del Norte", pais: "México", indicativo: "+52" },
+    { region: "América Central y el Caribe", pais: "Costa Rica", indicativo: "+506" },
+    { region: "América Central y el Caribe", pais: "Panamá", indicativo: "+507" },
+    { region: "América Central y el Caribe", pais: "Cuba", indicativo: "+53" },
+    { region: "América Central y el Caribe", pais: "República Dominicana", indicativo: "+1-809" },
+    { region: "América Central y el Caribe", pais: "Puerto Rico", indicativo: "+1-787" },
+    { region: "América del Sur", pais: "Argentina", indicativo: "+54" },
+    { region: "América del Sur", pais: "Brasil", indicativo: "+55" },
+    { region: "América del Sur", pais: "Chile", indicativo: "+56" },
+    { region: "América del Sur", pais: "Colombia", indicativo: "+57" },
+    { region: "América del Sur", pais: "Perú", indicativo: "+51" },
+    { region: "Oceanía", pais: "Australia", indicativo: "+61" },
+    { region: "Oceanía", pais: "Nueva Zelanda", indicativo: "+64" },
+    { region: "Oceanía", pais: "Fiyi", indicativo: "+679" },
+    { region: "Oceanía", pais: "Papúa Nueva Guinea", indicativo: "+675" },
+    { region: "Oriente Medio", pais: "Arabia Saudita", indicativo: "+966" },
+    { region: "Oriente Medio", pais: "Israel", indicativo: "+972" },
+    { region: "Oriente Medio", pais: "Emiratos Árabes Unidos", indicativo: "+971" },
+    { region: "Oriente Medio", pais: "Irak", indicativo: "+964" },
+    { region: "Oriente Medio", pais: "Qatar", indicativo: "+974" }
+];
+
+export const initialData: SeedData = {
+    options: [
+        { option: 'Si', value: 3 },
+        { option: 'En Proceso', value: 2 },
+        { option: 'No', value: 1 },
+    ],
+    questions:[
+        {
+            question: "¿Tiene definida la forma de entrada al mercado internacional (distribuidor, directo, etc.)?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿La empresa conoce las condicones de acceso al pais destino?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿Tiene identificado el público objetivo en el mercado internacional?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿Ha investigado competidores en el mercado de destino?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿La empresa tiene conocimiento y maneja los términos de negociación internacional INCOTERMS?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿La empresa cuenta con acuerdos o contratos estándar para sus distribuidores a nivel internacional?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿Tiene definido la oferta exportadora de el producto y/o servicio?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        },
+        {
+            question: "¿La empresa tiene claro cual es el codigo arancelario de su producto?",
+            options: [
+                { option: 'Si', value: 3 },
+                { option: 'En Proceso', value: 2 },
+                { option: 'No', value: 1 },
+            ]
+        } 
+    ],
+    areas: 
+    [
+        
+        {name: "Area 1",
+        description: "Estrategia Comercial Internacional",
+        questions:[ 
+            {
+            question: "¿Tiene definida la forma de entrada al mercado internacional (distribuidor, directo, etc.)?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿La empresa conoce las condicones de acceso al pais destino?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿Tiene identificado el público objetivo en el mercado internacional?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿Ha investigado competidores en el mercado de destino?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿La empresa tiene conocimiento y maneja los términos de negociación internacional INCOTERMS?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿La empresa cuenta con acuerdos o contratos estándar para sus distribuidores a nivel internacional?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿Tiene definido la oferta exportadora de el producto y/o servicio?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿La empresa tiene claro cual es el codigo arancelario de su producto?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+            {
+            question: "¿Conoce los costos logísticos hasta el cliente final?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1},
+            ]},
+        ]},
+        {name: "Area 2",
+        description: " Portafolio",
+        questions:[ 
+            {
+            question: "¿El portafolio está adaptado a las necesidades del mercado internacional?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿Ha identificado los códigos arancelarios de los productos que exportará?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿Cuenta con certificaciones o normas exigidas en el país de destino?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿Tiene claridad sobre los márgenes de rentabilidad para exportar?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+        ]},
+        {name: "Area 3",
+        description: "Costo de su Producto",
+        questions:[ 
+            {
+            question: "¿Dispone de un equipo capacitado para negociar con clientes internacionales?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿Cuenta con una estrategia de marketing digital adaptada al mercado objetivo?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿Ha diseñado un funnel de ventas para captar y convertir leads internacionales?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿Tiene prospectos o aliados potenciales identificados en el mercado de destino?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+            {
+            question: "¿La empresa a desarrollado campañas a nivel digital en mercados internacionales?",
+            options: [
+                {option: 'Si', value:3}, 
+                {option:'En Proceso', value:2}, 
+                {option:'No', value:1}, 
+            ]},
+        ]},
+    ]
+}
+
+export const data: Area[] = 
+[
+    {name: "Area 1",
+    description: "Estrategia Comercial Internacional",
+    questions:[ 
+        {
+        question: "¿Tiene definida la forma de entrada al mercado internacional (distribuidor, directo, etc.)?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿La empresa conoce las condicones de acceso al pais destino?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿Tiene identificado el público objetivo en el mercado internacional?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿Ha investigado competidores en el mercado de destino?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿La empresa tiene conocimiento y maneja los términos de negociación internacional INCOTERMS?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿La empresa cuenta con acuerdos o contratos estándar para sus distribuidores a nivel internacional?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿Tiene definido la oferta exportadora de el producto y/o servicio?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿La empresa tiene claro cual es el codigo arancelario de su producto?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+        {
+        question: "¿Conoce los costos logísticos hasta el cliente final?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1},
+        ]},
+    ]},
+    {name: "Area 2",
+    description: " Portafolio",
+    questions:[ 
+        {
+        question: "¿El portafolio está adaptado a las necesidades del mercado internacional?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿Ha identificado los códigos arancelarios de los productos que exportará?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿Cuenta con certificaciones o normas exigidas en el país de destino?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿Tiene claridad sobre los márgenes de rentabilidad para exportar?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+    ]},
+    {name: "Area 3",
+    description: "Costo de su Producto",
+    questions:[ 
+        {
+        question: "¿Dispone de un equipo capacitado para negociar con clientes internacionales?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿Cuenta con una estrategia de marketing digital adaptada al mercado objetivo?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿Ha diseñado un funnel de ventas para captar y convertir leads internacionales?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿Tiene prospectos o aliados potenciales identificados en el mercado de destino?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+        {
+        question: "¿La empresa a desarrollado campañas a nivel digital en mercados internacionales?",
+        options: [
+            {option: 'Si', value:3}, 
+            {option:'En Proceso', value:2}, 
+            {option:'No', value:1}, 
+        ]},
+    ]},
+]
+
+/*
 export const data: Area[] = 
 [
     {name: "Area 1",
@@ -417,3 +829,4 @@ export const data: Area[] =
         ]},
     ]},
 ]
+*/
