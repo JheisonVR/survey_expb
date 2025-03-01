@@ -1,14 +1,16 @@
 import React from "react";
 import { Radar } from "react-chartjs-2";
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
+import { ChartOptions } from "chart.js";
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 interface AreaRadarChartProps {
     areaValues: { [key: string]: number };
+    chartRef: React.RefObject<HTMLDivElement  | null>;
 }
 
-const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues }) => {
+const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef }) => {
     const data = {
         labels: Object.keys(areaValues),
         datasets: [
@@ -21,8 +23,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues }) => {
             },
         ],
     };
-
-    const options = {
+    const options: ChartOptions<"radar"> = {
         scales: {
             r: {
                 angleLines: {
@@ -33,8 +34,8 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues }) => {
                 },
                 pointLabels: {
                     font: {
-                        size: 14,
-                        weight: 700,
+                        size: 10,
+                        weight: 600,
                     },
                     color: "#222",
                 },
@@ -44,10 +45,12 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues }) => {
         },
         plugins: {
             legend: {
+                position: 'top' as const,
+                align: 'start',
                 labels: {
                     font: {
-                        size: 16,
-                        weight: 700,
+                        size: 10,
+                        weight: 500,
                     },
                     color: "#222",
                 },
@@ -69,7 +72,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues }) => {
     };
 
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md mt-4">
+        <div ref={chartRef} className="p-4 bg-white rounded-lg shadow-md mt-4 flex h-max justify-center items-center">
             <Radar data={data} options={options} />
         </div>
     );
