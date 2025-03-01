@@ -188,7 +188,7 @@ const PersonalData: React.FC = () => {
                     onChange={handleChange}
                     onInvalid={handleInvalid}
                     onInput={handleInput}
-                    pattern="^[A-Za-z]{3,}$"
+                    pattern="^[A-Za-z\s]{3,}$"
                     title="Name must be at least 3 letters long and contain no numbers."
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required
@@ -303,8 +303,8 @@ const PersonalData: React.FC = () => {
 
         </form>
             {/* Hidden components for PDF generation */}
-            <div className="flex flex-col overflow-visible w-full hidden">
-                <div className='h-1/4 w-3/4' ref={chartRef}>
+            <div className="flex flex-col overflow-visible w-full">
+                <div className='h-1/4' ref={chartRef}>
                     {surveyResult && <AreaRadarChart areaValues={surveyResult.values} chartRef={chartRef} />}
                 </div>
                 <div className='w-1/2 sm:w-1/4' ref={tableRef}>
