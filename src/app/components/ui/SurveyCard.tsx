@@ -190,7 +190,7 @@ const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCu
                 )}
             </div>
             <div hidden className="mt-4 text-right font-bold text-gray-800">
-                Suma total para {area}: {sum}
+                Suma total {area}: {sum}
             </div>
             <div className="flex flex-col sm:flex-row w-full ">
                 <div className="w-full sm:w-1/2 h-full " ref={tableRef}>
