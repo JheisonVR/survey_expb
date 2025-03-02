@@ -24,7 +24,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
         ],
     };
     const options: ChartOptions<"radar"> = {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
             r: {
                 angleLines: {
@@ -35,7 +35,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                 },
                 pointLabels: {
                     font: {
-                        size: 10,
+                        size: 5,
                         weight: 600,
                     },
                     color: "#222",
@@ -60,7 +60,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
         },
         plugins: {
             legend: {
-                position: 'top' as const,
+                position: 'chartArea' as const,
                 align: 'start',
                 labels: {
                     font: {
@@ -87,7 +87,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
     };
 
     return (
-        <div ref={chartRef} className="p-4 bg-white rounded-lg shadow-md mt-4 flex h-max justify-center items-center">
+        <div ref={chartRef} className="p-4 bg-white rounded-lg shadow-md mt-4 flex h-[500px] justify-center items-center">
             <Radar data={data} options={options} />
         </div>
     );

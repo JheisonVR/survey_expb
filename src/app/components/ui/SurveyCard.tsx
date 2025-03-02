@@ -196,7 +196,7 @@ const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCu
                 <div className="w-full sm:w-1/2 h-full " ref={tableRef}>
                     <AreaValuesTable areaValues={areaValues} totalSum={totalSum} />
                 </div>
-                <div className="w-full sm:w-1/2 h-full overflow-ellipsis" ref={chartRef}>
+                <div className="w-full sm:w-1/2 overflow-ellipsis" ref={chartRef}>
                     <AreaRadarChart areaValues={areaValues} chartRef={chartRef} />
                 </div>
             </div>
