@@ -139,16 +139,16 @@ const SurveyCard: React.FC<SurveyCardProps> = ({ questions, options, area, setCu
             <table className="w-full h-50 overflow-scroll">
                 <thead>
                     <tr>
-                        <th className="w-1/2 p-2 text-left font-bold text-cyan-800 text-md sm:text-xl border-b border-gray-300">{area}</th>
+                        <th className="w-1/2 p-2 text-left font-bold text-cyan-800 text-xs sm:text-xl border-b border-gray-300 ">{area}</th>
                         {options.map((option, index) => (
-                            <th key={index} className="w-1/8 p-2 font-semibold text-center text-md  text-gray-700 border-b border-gray-300">{option.option}</th>
+                            <th key={index} className="w-1/8 p-2 font-semibold text-center text-xs sm:text-md text-gray-700 border-b border-gray-300">{option.option}</th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
                     {questions.map((question, questionIndex) => (
                         <tr key={questionIndex} className="border-b border-gray-300">
-                            <td className="p-2 font-bold text-gray-800 text-xs sm:text-md">{question.question}</td>
+                            <td className="p-2 font-bold text-gray-800 text-xs sm:text-md border-r border-dashed dashed border-gray-300 sm:border-none">{question.question}</td>
                             {options.map((option, optionIndex) => (
                                 <td key={optionIndex} className="p-2 text-center">
                                     <input

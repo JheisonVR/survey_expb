@@ -7,7 +7,7 @@ ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, 
 
 interface AreaRadarChartProps {
     areaValues: { [key: string]: number };
-    chartRef: React.RefObject<HTMLDivElement  | null>;
+    chartRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef }) => {
@@ -15,7 +15,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
         labels: Object.keys(areaValues),
         datasets: [
             {
-                label: "Valores por área",
+                label: "Área",
                 data: Object.values(areaValues),
                 backgroundColor: "rgba(34, 202, 236, 0.2)",
                 borderColor: "rgba(34, 202, 236, 1)",
@@ -31,18 +31,12 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                         weight: 600,
                     },
                 }
-
             },
         ],
     };
+
     const options: ChartOptions<"radar"> = {
         maintainAspectRatio: false,
-        responsive: true,
-        spanGaps: true,
-        layout: {
-            autoPadding: true,
-        },
-        aspectRatio: 1,
         scales: {
             r: {
                 angleLines: {
@@ -51,7 +45,6 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                     lineWidth: 1,
                 },
                 grid: {
-                    //color: "rgba(200, 200, 200, 0.2)",
                     color: "rgba(208, 208, 208, 0.8)",
                     circular: false,
                     drawOnChartArea: true,
@@ -62,7 +55,6 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                     lineWidth: 1,
                     tickLength: 10,
                     z: 0,
-                    
                 },
                 pointLabels: {
                     font: {
@@ -71,13 +63,10 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                     },
                     color: "#222",
                     backdropColor: "rgba(255, 255, 255, 0.8)",
-                    padding: 5,
-                    borderRadius: 5,
-                    backdropPadding: 5,
                     display: true,
-                    centerPointLabels: false,
-
-
+                    callback: function (value: string) {
+                        return value.substring(0, 4); // Display only the first three letters
+                    },
                 },
                 suggestedMin: 0,
                 suggestedMax: Math.max(...Object.values(areaValues)) + 10,
@@ -96,14 +85,14 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                     z: 0,
                     stepSize: 10,
                     maxTicksLimit: 10,
-                }  
+                }
             },
-            
         },
         plugins: {
             legend: {
                 position: 'chartArea' as const,
-                align: 'start',
+                align: 'end',
+                display: true,
                 labels: {
                     font: {
                         size: 10,
@@ -111,6 +100,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                     },
                     color: "#222",
                 },
+                rtl: true,
             },
             tooltip: {
                 backgroundColor: "rgba(34, 202, 236, 0.8)",
@@ -129,7 +119,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
     };
 
     return (
-        <div ref={chartRef} className="p-4 bg-white rounded-lg shadow-md mt-4 flex h-[600px] justify-center">
+        <div ref={chartRef} className="p-4 bg-white rounded-lg shadow-md mt-4 flex justify-center overflow-visible h-[500px]">
             <Radar data={data} options={options} />
         </div>
     );

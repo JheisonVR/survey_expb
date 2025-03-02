@@ -353,7 +353,7 @@ export const data: Area[] =
         ]},
     ]},
     {name: "Area 2",
-    description: " Portafolio",
+    description: "Portafolio",
     questions:[ 
         {
         question: "¿El portafolio está adaptado a las necesidades del mercado internacional?",
