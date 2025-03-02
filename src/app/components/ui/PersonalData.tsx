@@ -135,7 +135,7 @@ const PersonalData: React.FC = () => {
 
             // Generate the PDF
             const pdf = new jsPDF();
-            const title = `Export Brands Resultados - ${new Date().toLocaleString()}`;
+            const title = `Diagnostico Export Brands - ${new Date().toLocaleString()}`;
             pdf.text(title, 40, 10);
             pdf.addImage(chartImgData, 'PNG', 10, 20, 190, 140);
             pdf.addImage(tableImgData, 'PNG', 50, 140, 100, 100);
@@ -303,11 +303,12 @@ const PersonalData: React.FC = () => {
 
         </form>
             {/* Hidden components for PDF generation */}
-            <div className="flex-col overflow-visible w-10/12 offscreen">
+            {/* </div><div className="flex-col overflow-visible w-10/12 offscreen"> */}
+            <div className="flex-col overflow-visible w-10/12">
                 <div className='h-1/4' ref={chartRef}>
                     {surveyResult && <AreaRadarChart areaValues={surveyResult.values} chartRef={chartRef} />}
                 </div>
-                <div className='w-1/2 sm:w-1/4' ref={tableRef}>
+                <div className='w-10/12 sm:w-1/3' ref={tableRef}>
                     {surveyResult && <AreaValuesTable areaValues={surveyResult.values} totalSum={Object.values(surveyResult.values).reduce((acc, value) => acc + value, 0)} />}
                 </div>
             </div>
