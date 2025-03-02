@@ -19,3 +19,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}

@@ -303,7 +303,7 @@ const PersonalData: React.FC = () => {
 
         </form>
             {/* Hidden components for PDF generation */}
-            <div className="flex flex-col overflow-visible w-full">
+            <div className="flex-col overflow-visible w-10/12 offscreen">
                 <div className='h-1/4' ref={chartRef}>
                     {surveyResult && <AreaRadarChart areaValues={surveyResult.values} chartRef={chartRef} />}
                 </div>
