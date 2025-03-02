@@ -19,11 +19,12 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                 data: Object.values(areaValues),
                 backgroundColor: "rgba(34, 202, 236, 0.2)",
                 borderColor: "rgba(34, 202, 236, 1)",
-                borderWidth: 2,
+                borderWidth: 0,
             },
         ],
     };
     const options: ChartOptions<"radar"> = {
+        maintainAspectRatio: false,
         scales: {
             r: {
                 angleLines: {
@@ -38,6 +39,20 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                         weight: 600,
                     },
                     color: "#222",
+                    callback: function (value: string) {
+                        // Wrap text labels
+                        const words = value.split(' ');
+                        const wrappedText = words.reduce((acc, word) => {
+                            const lastLine = acc[acc.length - 1];
+                            if (lastLine && (lastLine + ' ' + word).length <= 10) {
+                                acc[acc.length - 1] = lastLine + ' ' + word;
+                            } else {
+                                acc.push(word);
+                            }
+                            return acc;
+                        }, [] as string[]);
+                        return wrappedText.join('\n');
+                    },
                 },
                 suggestedMin: 0,
                 suggestedMax: Math.max(...Object.values(areaValues)) + 10,

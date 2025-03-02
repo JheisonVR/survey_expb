@@ -190,7 +190,7 @@ const PersonalData: React.FC = () => {
                     onInput={handleInput}
                     pattern="^[A-Za-z\s]{3,}$"
                     title="Name must be at least 3 letters long and contain no numbers."
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black placeholder-black"
                     required
                 />
                 {errors.name && <p className="mt-2 text-sm text-red-600">{errors.name}</p>}
@@ -207,7 +207,7 @@ const PersonalData: React.FC = () => {
                     onInput={handleInput}
                     pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                     title="Please enter a valid email address."
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black placeholder-black"
                     required
                 />
                 {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
@@ -219,7 +219,7 @@ const PersonalData: React.FC = () => {
                     name="region"
                     value={region}
                     onChange={handleRegionChange}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black placeholder-black"
                     required
                 >
                     <option value="">Selecciona una region</option>
@@ -237,7 +237,7 @@ const PersonalData: React.FC = () => {
                     name="country"
                     value={formData.country}
                     onChange={handleCountryChange}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black placeholder-black"
                     required
                 >
                     <option value="">Selecciona el pais</option>
@@ -257,7 +257,7 @@ const PersonalData: React.FC = () => {
                         name="indicativo"
                         value={indicativo}
                         readOnly
-                        className="mt-1 block w-1/4 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                        className="mt-1 block w-1/4 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100 text-black placeholder-black"
                     />
                     <input
                         type="tel"
@@ -269,7 +269,7 @@ const PersonalData: React.FC = () => {
                         onInput={handleInput}
                         pattern="^\d{10,}$"
                         title="Mobile phone must be at least 10 digits long."
-                        className="mt-1 block w-3/4 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-3/4 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black placeholder-black"
                         required
                     />
                 </div>
