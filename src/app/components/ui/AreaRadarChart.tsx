@@ -41,14 +41,15 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
             r: {
                 angleLines: {
                     display: true,
+                    color: '#888888',
                     borderDash: [5, 5],
                     lineWidth: 1,
                 },
                 grid: {
-                    color: "rgba(208, 208, 208, 0.8)",
+                    color: "#555555",
                     circular: false,
                     drawOnChartArea: true,
-                    tickColor: "rgba(208, 208, 208, 0.8)",
+                    tickColor: "#555555",
                     tickBorderDash: [5, 5],
                     tickBorderDashOffset: 5,
                     drawTicks: true,
@@ -76,7 +77,7 @@ const AreaRadarChart: React.FC<AreaRadarChartProps> = ({ areaValues, chartRef })
                 reverse: false,
                 ticks: {
                     display: true,
-                    color: "#b1a7a6",
+                    color: "#555555",
                     font: {
                         size: 10,
                         weight: 600,

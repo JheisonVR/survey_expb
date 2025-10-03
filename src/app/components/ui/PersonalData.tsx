@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import AreaValuesTable from './AreaValuesTable';
 import AreaRadarChart from './AreaRadarChart';
+import Loading from './Loading';
 
 const PersonalData: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const PersonalData: React.FC = () => {
         agree: false,
     });
 
+    const [isLoading, setIsLoading] = useState(false);
     const [region, setRegion] = useState('');
     const [indicativo, setIndicativo] = useState('');
     const [errors, setErrors] = useState({
@@ -100,9 +102,11 @@ const PersonalData: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
+        setIsLoading(true); // Show loading indicator
         console.log(formData);
 
+        // Use a try...finally block to ensure the loading indicator is hidden
+        // even if an error occurs.
         try {
             // Fetch the survey results from the server
             const surveyResponse = await fetch('/api/getSurveyResult');
@@ -118,28 +122,49 @@ const PersonalData: React.FC = () => {
             // Recreate the chart and table components
             let chartImgData = '';
             if (chartRef.current) {
-                const chartCanvas = await html2canvas(chartRef.current);
+                // Improve chart quality by increasing the scale
+                const chartCanvas = await html2canvas(chartRef.current, { scale: 10 });
                 chartImgData = chartCanvas.toDataURL('image/png');
             }
 
             let tableImgData = '';
             if (tableRef.current) {
-                const tableCanvas = await html2canvas(tableRef.current, { scale: 2 });
+                // Improve table quality by increasing the scale
+                const tableCanvas = await html2canvas(tableRef.current, { scale: 4 });
                 tableImgData = tableCanvas.toDataURL('image/png');
             }
 
             // Load the footer image
             const footerImg = await fetch('/Footer Export Brands.png');
             const footerBlob = await footerImg.blob();
-            const footerImgData = URL.createObjectURL(footerBlob);
+            const reader = new FileReader();
+            const footerImgData = await new Promise<string>(resolve => {
+                reader.onloadend = () => resolve(reader.result as string);
+                reader.readAsDataURL(footerBlob);
+            });
 
             // Generate the PDF
             const pdf = new jsPDF();
+            // Add a white background to the whole page to ensure consistency
+            pdf.setFillColor(255, 255, 255);
+            pdf.rect(0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight(), 'F');
+
             const title = `Diagnostico Export Brands - ${new Date().toLocaleString()}`;
+            
+            // --- Style the title ---
+            pdf.setFontSize(18);
+            pdf.setFont('helvetica', 'bold');
+            pdf.setTextColor('#FACC15');
             pdf.text(title, 40, 10);
-            pdf.addImage(chartImgData, 'PNG', 10, 20, 190, 140);
-            pdf.addImage(tableImgData, 'PNG', 50, 140, 100, 100);
-            pdf.addImage(footerImgData, 'PNG', 0, 270, 210, 25);
+
+            // --- Reset font for the rest of the document ---
+            pdf.setFont('helvetica', 'normal');
+            pdf.setTextColor(0, 0, 0); // Black
+
+            // Adjust image layout to be in column
+            pdf.addImage(chartImgData, 'PNG', 0, 50, 140, 70);
+            pdf.addImage(tableImgData, 'PNG', 110, 40, 80, 70);
+            pdf.addImage(footerImgData, 'PNG', 0, 277, 210, 20);
             const pdfBlob = pdf.output('blob');
 
             // Create a link to download the PDF
@@ -169,6 +194,8 @@ const PersonalData: React.FC = () => {
             router.push('/surveysent');
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            setIsLoading(false); // Hide loading indicator
         }
     };
 
@@ -176,7 +203,8 @@ const PersonalData: React.FC = () => {
     const filteredCountries = countries.filter(country => country.region === region);
 
     return (
-        <div className='w-full h-full'>
+        <div className='w-full h-full relative'>
+        {isLoading && <Loading />}
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 mt-2 bg-white shadow-md rounded-lg space-y-6">
             <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre</label>
